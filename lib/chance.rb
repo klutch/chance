@@ -62,8 +62,8 @@ module Chance
       second_total = case roll_hash['operator']
         when '+' then first_total + offset_value
         when '-' then first_total - offset_value
-        when '/' then first_total / offset_value
-        when '*' then first_total * offset_value
+#        when '/' then first_total / offset_value
+#        when '*' then first_total * offset_value
         else first_total
       end
 
