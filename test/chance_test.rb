@@ -7,16 +7,6 @@ class ChanceTest < Test::Unit::TestCase
     end
   end
   
-  context "a roll with an unsupported notation" do
-    should "be nil when ommitting any roll variables" do
-      assert_nil Chance.roll("d")
-    end
-    
-    should "be nil when trying any other notation or operations" do
-      assert_nil Chance.roll("1d6+20")
-    end
-  end
-  
   context "a roll of 1d6" do
     setup do
       @roll = Chance.roll "1d6"
