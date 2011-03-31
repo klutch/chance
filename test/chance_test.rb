@@ -91,6 +91,43 @@ class ChanceTest < Test::Unit::TestCase
     end
   end
   
+  context "maximum rolls" do
+    should "be the product of the iterations and number of sides for 4d6H" do
+      assert_equal 4 * 6, Chance.roll("4d6H")
+    end
+    
+  end
+
+  context "maximum rolls with operations" do
+    should "be correct for 3d18H-10" do
+      assert_equal (3*18)-10, Chance.roll("3d18H-10")
+    end
+
+    should "be correct for 3d6H+2" do
+      assert_equal (3*6)+2, Chance.roll("3d6H+2")
+    end
+
+    should "should be greater than the highest possible for 3d3H+^" do
+      assert_equal true, Chance.roll("3d3H+^") > 9
+    end
+
+    should "should be lower than the lowest possible for 3d3L-v" do
+      assert_equal true, Chance.roll("3d3L-v") < 3
+    end
+  end
+  
+  context "minimum rolls" do
+    should "be the number of iterations 7d20L" do
+      assert_equal 7, Chance.roll("7d20L")
+    end
+  end
+  
+  context "minimum rolls with operations" do
+    should "be the number of iterations 3d28L-50" do
+      assert_equal 20, Chance.roll("33d10L-13")
+    end
+  end
+  
   context "rolls with operations" do
     should "be in the 12 to 30 range after multiple rolls for 2d10+10" do
       assert_equal true, confirm_range(12..30, "2d10+10")
